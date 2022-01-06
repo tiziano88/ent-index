@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          go get github.com/google/ent/blob/main/cmd/indexer
+          go get github.com/google/ent/cmd/indexer
       - run: |
           indexer --help
       - run: |
