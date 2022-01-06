@@ -6,7 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          go get github.com/google/ent/cmd/indexer
+          go install github.com/google/ent/cmd/indexer
       - run: |
           indexer --help
       - run: |
