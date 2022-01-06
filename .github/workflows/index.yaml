@@ -12,7 +12,7 @@ jobs:
             --header 'Accept: application/vnd.github.v3+json' \
             --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
             '${{ github.event.comment.url }}/reactions' \
-            --data='{"content":"eyes"}'
+            --data '{"content":"eyes"}'
       - uses: actions/checkout@v2
       - uses: actions/setup-go@v2
         with:
@@ -30,7 +30,7 @@ jobs:
             --header 'Accept: application/vnd.github.v3+json' \
             --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
             '${{ github.event.comment.url }}/reactions' \
-            --data='{"content":"+1"}'
+            --data '{"content":"+1"}'
       - run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
