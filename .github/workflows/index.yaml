@@ -20,8 +20,8 @@ jobs:
       - run: |
           curl \
             -X POST \
-            --header='Accept: application/vnd.github.v3+json' \
-            --header='authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+            --header 'Accept: application/vnd.github.v3+json' \
+            --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
             '${{ github.event.comment.url }}/reactions' \
             --data='{"content":"+1"}'
       - run: |
