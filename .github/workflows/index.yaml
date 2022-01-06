@@ -36,5 +36,7 @@ jobs:
             -X POST \
             --header 'Accept: application/vnd.github.v3+json' \
             --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-            '${{ github.event.comment.url }}' \
-            --data '{"body":"$BODY"}'
+            '${{ github.event.comment.issue_url }}/comments' \
+            --data "{\"body\":\"$BODY\"}"
+
+        # Use '${{ github.event.comment.url }}' to edit the existing comment instead.
