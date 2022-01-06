@@ -19,21 +19,22 @@ jobs:
           go-version: '^1.17.3'
       - run: |
           go version
-          go install github.com/google/ent/cmd/indexer@latest
+          go install github.com/google/ent/cmd/indexer@d5372a3dd4f1ad89bfea58a1d6ac5609727df491
       - env:
           URL: ${{ github.event.comment.body }}
         run: |
-          indexer get --index=. --url="$URL"
-      - run: |
+          indexer fetch --index=. --url="$URL"
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "Index $URL"
+          git push
+          export COMMIT=x
+          export HASH=x
+          export BODY="Indexed `$URL` in $COMMIT as `$HASH`"
           curl \
             -X POST \
             --header 'Accept: application/vnd.github.v3+json' \
             --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-            '${{ github.event.comment.url }}/reactions' \
-            --data '{"content":"+1"}'
-      - run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add .
-          git commit -m "generated"
-          git push
+            '${{ github.event.comment.url }}' \
+            --data '{"body":"$BODY"}'
