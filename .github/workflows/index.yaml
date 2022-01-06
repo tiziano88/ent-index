@@ -5,4 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
+          go get github.com/google/ent/blob/main/cmd/indexer
+      - run: |
+          indexer --help
+      - run: |
           echo "Comment on issue #${{ github.event.issue.number }}"
