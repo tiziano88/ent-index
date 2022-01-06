@@ -10,10 +10,11 @@ jobs:
           go-version: '^1.17.3'
       - run: |
           go version
-          export GO111MODULE=on
           go install github.com/google/ent/cmd/indexer@latest
-      - run: |
-          indexer --help
+      - env:
+          URL: ${{ github.event.issue.comment.body }}
+        run: |
+          indexer get --index=. --url="$URL"
       - run: |
           echo "Comment on issue #${{ github.event.issue.number }}"
       - run: |
