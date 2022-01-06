@@ -12,13 +12,12 @@ jobs:
           go version
           go install github.com/google/ent/cmd/indexer@latest
       - env:
-          URL: ${{ github.event.issue.comment.body }}
+          URL: ${{ github.event.comment.body }}
         run: |
           indexer get --index=. --url="$URL"
       - run: |
           echo "Comment on issue #${{ github.event.issue.number }}"
       - run: |
-          date > generated.txt
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
