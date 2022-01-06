@@ -4,9 +4,17 @@ jobs:
   index:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - run: |
           go get github.com/google/ent/cmd/indexer
       - run: |
           indexer --help
       - run: |
           echo "Comment on issue #${{ github.event.issue.number }}"
+      - run: |
+          date > generated.txt
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "generated"
+          git push
