@@ -1,0 +1,7 @@
+on: issue_comment
+
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Comment on issue #${{ github.event.issue.number }}"
