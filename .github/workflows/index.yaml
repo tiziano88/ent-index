@@ -4,6 +4,8 @@ jobs:
   index:
     runs-on: ubuntu-latest
     steps:
+      - run: |
+          echo "Comment on issue #${{ github.event.issue.number }}"
       - uses: actions/checkout@v2
       - uses: actions/setup-go@v2
         with:
@@ -16,7 +18,11 @@ jobs:
         run: |
           indexer get --index=. --url="$URL"
       - run: |
-          echo "Comment on issue #${{ github.event.issue.number }}"
+        curl \
+          -X POST \
+          -H 'Accept: application/vnd.github.v3+json. \
+          '${{ github.event.comment.url} }}/reactions' \
+          -d '{"content":"+1"}'
       - run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
