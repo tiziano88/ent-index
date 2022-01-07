@@ -19,7 +19,7 @@ jobs:
           go-version: '^1.17.3'
       - run: |
           go version
-          go install github.com/google/ent/cmd/indexer@68d28c7
+          go install github.com/google/ent/cmd/indexer@4b50b8d
       - env:
           URL: ${{ github.event.comment.body }}
         run: |
